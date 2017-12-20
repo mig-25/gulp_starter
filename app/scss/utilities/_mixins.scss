@@ -1,0 +1,65 @@
+///Mixin using breakpoint map 
+@mixin respond-to($breakpoint) {
+  // If the key exists in the map
+  @if map-has-key($breakpoints, $breakpoint) {
+    // Prints a media query based on the value
+    @media #{inspect(map-get($breakpoints, $breakpoint))} {
+      @content;
+    }
+  }
+ 
+  // If the key doesn't exist in the map
+  @else {
+    @warn "Unfortunately, no value could be retrieved from `#{$breakpoint}`. "
+        + "Available breakpoints are: #{map-keys($breakpoints)}.";
+  }
+}
+
+///Mixin for page background
+/// @param {url} $imagepath - set the url of the page-bg
+@mixin page-bg($imagepath,$bgrepeat:no-repeat,$bgattachment:fixed,$bgsize:cover) {
+	
+		color: map-get($color, bright);
+  		background: map-get($color, accent1);
+        background-image: url($imagepath);
+        background-repeat: $bgrepeat;
+		background-attachment:$bgattachment;
+		background-size:$bgsize;
+    
+	}
+
+  ///Mixin for buttons
+  @mixin button-bg($bg) {
+  background: $bg;
+  @extend %btn;
+  &:hover {
+    background:darken($bg,8%);
+    transition: all 0.3s ease;
+  }
+  &:active {
+    background:darken($bg,25%);
+  } 
+}
+
+///Flexcard mixin
+
+@mixin select-card($num) {
+	@extend %flexcard-item;
+  &:nth-child(#{$num}n) {
+    @content
+  }
+}
+
+///For Grid
+
+@mixin grid {
+	display: grid;
+	grid-gap: 2px;
+	grid-template-columns: 1fr 1fr;
+	
+	/// 5 column layout when screen size is wide enoughalign-content
+	
+	@include respond-to('small') {
+		grid-template-columns: 1fr .5fr 1fr 2fr 1fr;	
+	}
+}

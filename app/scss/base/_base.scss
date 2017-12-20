@@ -1,0 +1,51 @@
+
+//Modern border-box applied everywhere.
+html {
+  box-sizing: border-box;
+}
+
+// inherit box-sizing
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+// set upp body color
+
+
+body a:link{
+  text-decoration: none;
+}
+
+img {
+  width: 100%;
+  height: auto;		
+}
+
+h1, h2 {
+	margin: 0;
+}
+
+h1 {
+	font-family: 'Libre Baskerville';
+	font-size: 4rem;
+	font-weight: 700;
+}
+
+h2 {
+	
+	color: map-get($color, mygrey);
+	font-family: 'Nixie One', cursive;
+	font-size: 1.5rem;
+	font-weight: 400;
+}
+
+h3 {
+	font-size: 2rem;
+	transform: rotate(-45deg);
+}
+
+
+
+
